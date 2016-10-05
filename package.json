@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "hot": "webpack-dev-server --progress --colors --no-info --inline --hot --config webpack.server.js"
   },
   "author": "Pavel Vlasov <freakycue@gmail.com>",
@@ -20,6 +20,7 @@
     "coffee-script": "^1.11.1",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
+    "jest-cli": "^16.0.1",
     "react-fatigue": "github:bluecore-ui-kit/react-fatigue",
     "react-hot-loader": "^2.0.0-alpha-4",
     "scss-loader": "0.0.1",
