@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import 'bluecore-ui-kit/lib/typography/Typography';
 
 import {createElement} from 'react';
 import {render} from 'react-dom';

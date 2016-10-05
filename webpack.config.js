@@ -14,7 +14,10 @@ exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.coffee'],
-    root: path.resolve('./src')
+    root: [
+      path.resolve('./src'),
+      path.resolve('./node_modules/bluecore-ui-kit/lib')
+    ]
   },
 
   module: {
@@ -27,6 +30,9 @@ exports = {
       test: /\.scss/,
       exclude: /\.use\.scss$/,
       loader: 'style!css!sass'
+    }, {
+      test: /\.woff2?$/,
+      loader: 'url?limit=5000&name=[name].[hash:6].[ext]'
     }]
   }
 };
