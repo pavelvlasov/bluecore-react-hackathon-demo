@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config .jestrc --verbose --no-cache",
     "hot": "webpack-dev-server --progress --colors --no-info --inline --hot --config webpack.server.js"
   },
   "author": "Pavel Vlasov <freakycue@gmail.com>",
@@ -21,6 +21,7 @@
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "jest-cli": "^16.0.1",
+    "react-addons-test-utils": "^15.3.2",
     "react-fatigue": "github:bluecore-ui-kit/react-fatigue",
     "react-hot-loader": "^2.0.0-alpha-4",
     "scss-loader": "0.0.1",
