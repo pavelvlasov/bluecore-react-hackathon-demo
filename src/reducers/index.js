@@ -1,5 +1,6 @@
-const defaultState = {};
+import {combineReducers} from 'redux';
+import images from './images';
 
-export default ((state = defaultState) => {
-  return state;
+export default combineReducers({
+  images
 });
