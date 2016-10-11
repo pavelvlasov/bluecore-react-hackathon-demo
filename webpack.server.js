@@ -24,4 +24,8 @@ exports = merge.smart(config, {
   devtool: 'source-map'
 });
 
-module.exports = validate(exports);
+module.exports = validate(exports, {
+  rules: {
+    'no-root-files-node-modules-nameclash': false
+  }
+});

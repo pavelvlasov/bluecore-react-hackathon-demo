@@ -23,7 +23,8 @@ exports = {
   module: {
     loaders: [{
       test: /\.jsx?/,
-      loader: 'babel'
+      loader: 'babel',
+      exclude: /(node_modules\/(?!bluecore-ui-kit))/
     }, {
       test: /\.coffee/, loader: 'coffee'
     }, {
@@ -37,4 +38,8 @@ exports = {
   }
 };
 
-module.exports = validate(exports);
+module.exports = validate(exports, {
+  rules: {
+    'no-root-files-node-modules-nameclash': false
+  }
+});
