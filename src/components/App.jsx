@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 
 import SearchBar from './search_bar';
-import Image from './image';
+import ImageList from './image_list';
 
 import {Container} from 'bluecore-ui-kit/lib/layout/Container/Container';
 import {Row} from 'bluecore-ui-kit/lib/layout/Row/Row';
+
+let imageId = 0;
 
 class App extends Component {
   constructor(props) {
@@ -12,9 +14,57 @@ class App extends Component {
 
     this.state = {
       searchTerm: '',
-      imageUrl: null,
-      status: 'Waiting for input'
+      images: []
     };
+  }
+
+  onAddImage = (src) => {
+    imageId += 1;
+    this.setState({
+      images: [
+        ...this.state.images,
+        {
+          id: imageId,
+          src
+        }
+      ]
+    });
+  }
+
+  onRemove = (id) => {
+    this.setState({
+      images: this.state.images.filter(image =>
+        image.id !== id
+      )
+    });
+  }
+
+  onLoad = (id) => {
+    this.setState({
+      images: this.state.images.map(image => {
+        if (image.id === id) {
+          return {
+            ...image,
+            loaded: true
+          };
+        }
+        return image;
+      })
+    });
+  }
+
+  onError = (id) => {
+    this.setState({
+      images: this.state.images.map(image => {
+        if (image.id === id) {
+          return {
+            ...image,
+            loaded: true
+          };
+        }
+        return image;
+      })
+    });
   }
 
   onChange = (searchTerm) => {
@@ -22,29 +72,14 @@ class App extends Component {
   }
 
   onSubmit = () => {
-    this.setState({
-      imageUrl: this.state.searchTerm,
-      status: 'Loading image ....'
-    });
-  }
-
-  onLoad = () => {
-    this.setState({
-      status: 'Image loaded'
-    });
-  }
-
-  onError = () => {
-    this.setState({
-      status: 'Error!'
-    });
+    this.onAddImage(this.state.searchTerm);
+    this.setState({searchTerm: ''});
   }
 
   render() {
     const {
       searchTerm,
-      imageUrl,
-      status
+      images
     } = this.state;
 
     return (
@@ -56,13 +91,12 @@ class App extends Component {
             onSubmit={this.onSubmit} />
         </Row>
         <Row>
-          Status: {status}
-        </Row>
-        <Row>
-          <Image
-            imageUrl={imageUrl}
+          <ImageList
+            images={images}
+            onError={this.onError}
             onLoad={this.onLoad}
-            onError={this.onError} />
+            onRemove={this.onRemove}
+          />
         </Row>
       </Container>
     );
